@@ -1,11 +1,13 @@
 class CreateItems < ActiveRecord::Migration[5.2]
   def change
-    create_table :items do |t|
-      t.string :name
-      t.string :description
-      t.double :unit_price
+    unless ActiveRecord::Base.connection.table_exists?('items')
+      create_table :items do |t|
+        t.string :name
+        t.string :description
+        t.float :unit_price
 
-      t.timestamps
+        t.timestamps
+      end
     end
   end
 end

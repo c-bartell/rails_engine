@@ -1,9 +1,11 @@
 class CreateInvoices < ActiveRecord::Migration[5.2]
   def change
-    create_table :invoices do |t|
-      t.string :status
+    unless ActiveRecord::Base.connection.table_exists?('invoices')
+      create_table :invoices do |t|
+        t.string :status
 
-      t.timestamps
+        t.timestamps
+      end
     end
   end
 end
