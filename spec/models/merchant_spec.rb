@@ -7,6 +7,6 @@ RSpec.describe Merchant, type: :model do
   end
 
   describe 'validations' do
-    it { should validate(:name) }
+    it { should validate_presence_of(:name) }
   end
 end
