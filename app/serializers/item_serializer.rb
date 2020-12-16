@@ -5,8 +5,6 @@ class ItemSerializer
     }
   end
 
-  private
-
   def self.formatted_data(item_data)
     if item_data.is_a? Item
       self.item_hash(item_data)
