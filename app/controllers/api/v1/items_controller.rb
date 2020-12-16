@@ -12,8 +12,11 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    # binding.pry
     render json: ItemSerializer.format_item(Item.update(params[:id], item_params))
+  end
+
+  def destroy
+    Item.destroy(params[:id])
   end
 
   private
