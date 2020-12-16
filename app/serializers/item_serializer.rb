@@ -27,7 +27,7 @@ class ItemSerializer
 
   def self.attributes_hash(item)
     {
-      merchant_id: item.merchant_id.to_s,
+      merchant_id: item.merchant_id,
       name: item.name,
       description: item.description,
       unit_price: item.unit_price
