@@ -28,7 +28,7 @@ RSpec.describe 'Items ReST Endpoints' do
       expect(item[:attributes]).to be_an(Hash)
 
       expect(item[:attributes]).to have_key(:merchant_id)
-      expect(item[:attributes][:merchant_id]).to be_an(String)
+      expect(item[:attributes][:merchant_id]).to be_an(Integer)
 
       expect(item[:attributes]).to have_key(:name)
       expect(item[:attributes][:name]).to be_an(String)
@@ -64,7 +64,7 @@ RSpec.describe 'Items ReST Endpoints' do
     expect(item[:attributes]).to be_an(Hash)
 
     expect(item[:attributes]).to have_key(:merchant_id)
-    expect(item[:attributes][:merchant_id]).to be_an(String)
+    expect(item[:attributes][:merchant_id]).to be_an(Integer)
 
     expect(item[:attributes]).to have_key(:name)
     expect(item[:attributes][:name]).to be_an(String)
