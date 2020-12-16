@@ -77,7 +77,6 @@ RSpec.describe 'Items ReST Endpoints' do
   end
 
   it 'can create a new item' do
-    merchant = create(:merchant)
     item_params = {
       name: 'Kajigger',
       description: 'A whachacallit.',
@@ -95,5 +94,30 @@ RSpec.describe 'Items ReST Endpoints' do
     expect(created_item.description).to eq(item_params[:description])
     expect(created_item.unit_price).to eq(item_params[:unit_price])
     expect(created_item.merchant_id).to eq(item_params[:merchant_id])
+  end
+
+  it 'can update an existing item' do
+    id = create(:item).id
+    previous_attributes = {
+      name: Item.last.name,
+      description: Item.last.description,
+      unit_price: Item.last.unit_price,
+    }
+    new_attributes = {
+      name: 'Kajigger',
+      description: 'A whachacallit.',
+      unit_price: 0.99,
+    }
+    headers = { 'CONTENT_TYPE' => 'application/json' }
+
+    new_attributes.each do |attribute, value|
+      patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({ attribute => value })
+      expect(response).to be_successful
+
+      item = Item.find(id)
+
+      expect(item.method(attribute).call).to_not eq(previous_attributes[attribute])
+      expect(item.method(attribute).call).to eq(value)
+    end
   end
 end
