@@ -1,16 +1,16 @@
 class ItemSerializer
   def self.format_item(items)
     {
-      data: self.formatted_data(items)
+      data: formatted_data(items)
     }
   end
 
   def self.formatted_data(item_data)
     if item_data.is_a? Item
-      self.item_hash(item_data)
+      item_hash(item_data)
     else
       item_data.map do |item|
-        self.item_hash(item)
+        item_hash(item)
       end
     end
   end
@@ -19,7 +19,7 @@ class ItemSerializer
     {
       id: item.id.to_s,
       type: 'item',
-      attributes: self.attributes_hash(item)
+      attributes: attributes_hash(item)
     }
   end
 
