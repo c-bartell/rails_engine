@@ -1,5 +1,13 @@
 require 'csv'
 
+# Clear data from tables
+Transaction.delete_all
+InvoiceItem.delete_all
+Invoice.delete_all
+Item.delete_all
+Customer.delete_all
+Merchant.delete_all
+
 # Reset the primary key sequences on all tables:
 ActiveRecord::Base.connection.tables.each do |t|
   ActiveRecord::Base.connection.reset_pk_sequence!(t)
