@@ -1,9 +1,9 @@
 class Invoice < ApplicationRecord
- has_many :invoice_items
- has_many :items, through: :invoice_items
- has_many :transactions
- belongs_to :merchant
- belongs_to :customer
+  has_many :invoice_items, dependent: :destroy
+  has_many :items, through: :invoice_items
+  has_many :transactions, dependent: :destroy
+  belongs_to :merchant
+  belongs_to :customer
 
- validates_presence_of :status, :customer_id, :merchant_id
+  validates :status, :customer_id, :merchant_id, presence: true
 end

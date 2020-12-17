@@ -85,7 +85,7 @@ RSpec.describe 'Items ReST Endpoints' do
     }
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
-    post '/api/v1/items', headers: headers, params: JSON.generate(item: item_params)
+    post '/api/v1/items', headers: headers, params: JSON.generate(item_params)
 
     created_item = Item.last
 
