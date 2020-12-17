@@ -57,4 +57,18 @@ RSpec.describe 'Merchant ReST endpoints' do
     expect(merchant[:attributes]).to have_key(:name)
     expect(merchant[:attributes][:name]).to be_an(String)
   end
+
+  it 'can create a new merchant' do
+    merchant_params = {
+      name: 'The Arasaka Corporation'
+    }
+    headers = { 'CONTENT_TYPE' => 'application/json' }
+
+    post '/api/v1/merchants', headers: headers, params: JSON.generate(merchant_params)
+
+    created_merchant = Merchant.last
+
+    expect(response).to be_successful
+    expect(created_merchant.name).to eq(merchant_params[:name])
+  end
 end
