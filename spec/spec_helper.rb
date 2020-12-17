@@ -17,6 +17,7 @@
 # SimpleCov setup
 require 'simplecov'
 SimpleCov.start 'rails'
+SimpleCov.add_filter ['app/channels', 'app/job', 'app/mailers']
 
 require 'database_cleaner/active_record'
 
