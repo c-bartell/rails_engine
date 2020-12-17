@@ -89,4 +89,12 @@ RSpec.describe 'Merchant ReST endpoints' do
     expect(merchant.name).to_not eq(previous_name)
     expect(merchant.name).to eq(new_attribute[:name])
   end
+
+  it 'can delete a merchant' do
+    merchant = create(:merchant)
+
+    expect{ delete "/api/v1/merchants/#{merchant.id}" }.to change(Merchant, :count).by(-1)
+    expect(response).to be_successful
+    expect{ Merchant.find(merchant.id) }.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end
