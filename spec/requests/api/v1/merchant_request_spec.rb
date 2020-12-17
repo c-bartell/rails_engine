@@ -71,4 +71,22 @@ RSpec.describe 'Merchant ReST endpoints' do
     expect(response).to be_successful
     expect(created_merchant.name).to eq(merchant_params[:name])
   end
+
+  it 'can update an existing merchant' do
+    id = create(:merchant).id
+    previous_name = Merchant.last.name
+    new_attribute = {
+      name: 'The Arasaka Corporation',
+    }
+    headers = { 'CONTENT_TYPE' => 'application/json' }
+
+    patch "/api/v1/merchants/#{id}", headers: headers, params: JSON.generate(new_attribute)
+
+    expect(response).to be_successful
+
+    merchant = Merchant.find(id)
+
+    expect(merchant.name).to_not eq(previous_name)
+    expect(merchant.name).to eq(new_attribute[:name])
+  end
 end
