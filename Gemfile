@@ -43,6 +43,7 @@ group :test do
   gem 'faker'
   gem 'simplecov'
   gem 'database_cleaner-active_record'
+  gem 'timecop'
 end
 
 
