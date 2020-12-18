@@ -36,16 +36,27 @@ RSpec.describe Merchant, type: :model do
         expect(Merchant.search(empty_query)).to be_nil
       end
 
-      it 'created_at/updated_at' do
-        
-      end
+      # it 'created_at/updated_at' do
+      #   time_1 = DateTime.new(2020, 11, 10, 12, 0, 0)
+      #   time_2 = DateTime.new(2020, 12, 3, 20, 2, 3)
+      #   time_3 = DateTime.new(2021, 1, 13, 14, 25, 0)
+      #   Timecop.freeze(time_1)
+      #   create_list :merchant, 2
+      #   Timecop.freeze(time_2)
+      #   target_id = create(:merchant).id
+      #   Timecop.freeze(time_3)
+      #   Merchant.update(target_id, name: 'The Arasaka Corporation')
+      #   merchant = Merchant.find(target_id)
+      #   expect(Merchant.search({ created_at: time_2.to_s }).id).to eq(target_id)
+      #   expect(Merchant.search({ updated_at: time_3.to_s }).id).to eq(target_id)
+      # end
     end
 
     it '::date' do
-      expect(Merchant.date?(:created_at)).to be true
-      expect(Merchant.date?(:updated_at)).to be true
-      expect(Merchant.date?(:name)).to be false
-      expect(Merchant.date?(:id)).to be false
+      expect(Merchant.date?('created_at')).to be true
+      expect(Merchant.date?('updated_at')).to be true
+      expect(Merchant.date?('name')).to be false
+      expect(Merchant.date?('id')).to be false
       expect(Merchant.date?("something that isn't an attribute")).to be false
     end
   end

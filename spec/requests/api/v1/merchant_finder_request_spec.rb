@@ -54,6 +54,29 @@ RSpec.describe 'Merchant finder endpoints' do
       expect(merchant).to have_key(:id)
       expect(merchant[:id]).to eq(target_merchant.id.to_s)
     end
+
+#     it 'works when queried with a date' do
+#       create_list :merchant, 9
+#       merchant_params = {
+#         name: 'The Arasaka Corporation'
+#       }
+#       target_merchant = Merchant.create(merchant_params)
+#       creation_date = target_merchant.created_at.to_s.gsub(' ', '%20')
+#
+#       get "/api/v1/merchants/find?created_at=#{creation_date}"
+#
+#       expect(response).to be_successful
+#
+#       parsed_response = JSON.parse(response.body, symbolize_names: true)
+#
+#       expect(parsed_response).to have_key(:data)
+#       expect(parsed_response[:data]).to be_an(Hash)
+#
+#       merchant = parsed_response[:data]
+#
+#       expect(merchant).to have_key(:id)
+#       expect(merchant[:id]).to eq(target_merchant.id.to_s)
+#     end
   end
 end
 # This endpoint should return a single record that matches a set of criteria. Criteria will be input through query parameters.
