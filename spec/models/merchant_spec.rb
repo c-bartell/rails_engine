@@ -35,6 +35,18 @@ RSpec.describe Merchant, type: :model do
         expect(Merchant.search(something_that_isnt_there)).to be_nil
         expect(Merchant.search(empty_query)).to be_nil
       end
+
+      it 'created_at/updated_at' do
+        
+      end
+    end
+
+    it '::date' do
+      expect(Merchant.date?(:created_at)).to be true
+      expect(Merchant.date?(:updated_at)).to be true
+      expect(Merchant.date?(:name)).to be false
+      expect(Merchant.date?(:id)).to be false
+      expect(Merchant.date?("something that isn't an attribute")).to be false
     end
   end
 end
