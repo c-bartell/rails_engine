@@ -1,11 +1,12 @@
 class Api::V1::Merchants::SearchController < ApplicationController
   def show
-    render json: MerchantSerializer.format_merchant(Merchant.search(query))
+    result = Merchant.search(query)
+    render json: MerchantSerializer.format_merchant(result) if result
   end
 
   private
 
   def query
-    params.permit(:name).to_h
+    params.permit(:name, :created_at).to_h
   end
 end
