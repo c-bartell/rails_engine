@@ -10,6 +10,14 @@ class Merchant < ApplicationRecord
     attribute = query_params.to_a[0][0]
     query = query_params.to_a[0][1]
 
-    Merchant.find_by("lower(#{attribute}) like ?", "%#{query.downcase}%")
+    if attribute == :created_at || attribute == :updated_at
+      find_by(attribute => query)
+    else
+      find_by("lower(#{attribute}) like ?", "%#{query.downcase}%")
+    end
+  end
+
+  def self.date?(attribute)
+    attribute == :created_at || attribute == :updated_at
   end
 end
