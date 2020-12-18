@@ -18,6 +18,6 @@ class Merchant < ApplicationRecord
   end
 
   def self.date?(attribute)
-    attribute == "created_at" || attribute == "updated_at"
+    %w[created_at updated_at].include?(attribute)
   end
 end
